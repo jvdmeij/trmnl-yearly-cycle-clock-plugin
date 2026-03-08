@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRMNL Year Clock</title>
+    <link rel="stylesheet" href="https://usetrmnl.com/css/latest/plugins.css">
+    <script src="https://usetrmnl.com/js/latest/plugins.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="year-clock">
+    <div class="layout layout--row layout--center year-clock" id="layout">
+        <div class="center-point" id="center"></div>
+        <div class="seasons-disk" id="seasons-disk"></div>
+        <div class="hand-container" id="hand-container">
+            <div class="hand" id="hand">
+                <div class="hand-arrow"></div>
+            </div>
+            <div class="center-dot"></div>
+        </div>
+        <div class="label label--inverted current-year pt--1 pb--0">{{ current_year }}</div>
+    </div>
+    <script>
+        window.trmnlTimestamp = {{ timestamp | default: 0 }};
+        window.trmnlHemisphere = "{{ hemisphere | default: 'northern' }}";
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>

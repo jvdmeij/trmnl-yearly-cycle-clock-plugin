@@ -1,0 +1,219 @@
+body.year-clock {
+    width: 100vw;
+    height: 100vw;
+}
+
+.year-clock {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    --border-width: 2px;
+    --season-disk-size: 25vmin;
+    --hand-color: black;
+
+    /* Default Positioning Radii */
+    --month-label-radius: 38vmin;
+    --month-emoji-radius: 22vmin;
+    --season-emoji-radius: 7vmin;
+    --emoji-size: 5vmin;
+    --line-color: #ccc;
+}
+
+.year-clock .label.current-year {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    z-index: 10;
+}
+
+/* Center reference for month lines and labels */
+.year-clock .center-point {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+}
+
+/* Lines */
+.year-clock .line {
+    position: absolute;
+    background: var(--line-color);
+    transform-origin: top center;
+}
+
+/* Month Separators: Radiate from center to infinity */
+.year-clock .month-line {
+    width: var(--border-width);
+    height: 150vmax;
+    /* Enough to cover corners */
+    top: 0;
+    left: calc(var(--border-width) / -2);
+    pointer-events: none;
+}
+
+/* Season Disk */
+.year-clock .seasons-disk {
+    position: absolute;
+    /* Scale disk by --season-disk-size */
+    width: var(--season-disk-size);
+    height: var(--season-disk-size);
+    background: white;
+    border-radius: 50%;
+    border: var(--border-width) solid var(--line-color);
+    /* Above month lines and emojis */
+    overflow: hidden;
+    /* Crop season lines/emojis */
+}
+
+.year-clock .season-line {
+    position: absolute;
+    width: var(--border-width);
+    height: 50%;
+    /* Radius */
+    background: var(--line-color);
+    top: 50%;
+    left: 50%;
+    transform-origin: top center;
+    margin-left: calc(var(--border-width) / -2);
+    z-index: 11;
+}
+
+/* Labels */
+.year-clock .label {
+    justify-content: center;
+    /* position: absolute;
+    text-align: center;
+    font-weight: bold;
+    transform-origin: center;
+    display: flex;
+    align-items: center;
+    line-height: 1; */
+}
+
+.year-clock .month-label {
+    font-size: clamp(10px, 4vmin, 24px);
+    z-index: 137;
+    -webkit-text-stroke: 4.5px #fff;
+    paint-order: stroke fill;
+}
+
+/* Emojis */
+.year-clock .emoji-item {
+    position: absolute;
+    font-family: "Noto Emoji", sans-serif;
+    transform-origin: center;
+    user-select: none;
+    pointer-events: none;
+    font-optical-sizing: auto;
+    font-style: normal;
+    -webkit-text-stroke: 4.5px #fff;
+    paint-order: stroke fill;
+    z-index: 137;
+}
+
+/* Hand */
+.year-clock .hand-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 130;
+}
+
+.year-clock .hand {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 48vmax;
+    height: 28vmax;
+    /* Almost reach the edge */
+    background: black;
+    transform-origin: top center;
+    margin-left: -3px;
+}
+
+.year-clock .hand-arrow {
+    position: absolute;
+    bottom: -10px;
+    left: -7px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 20px solid black;
+}
+
+.year-clock .center-dot {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: black;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 101;
+}
+
+/* Responsive Overrides */
+/* 
+   User request: "now for all classes except full". 
+   Classes listed before: full-horizontal, quadrant, full-vertical.
+   Also assuming 'full' is default or explicit. 
+   We apply overrides to the specific constrained classes.
+*/
+
+/* Shared override logic for non-full screens to compact layout */
+/* Full Vertical - narrow but works well with default compact props */
+.year-clock.full-vertical {
+    --season-disk-size: 20vmin;
+    /* Move things closer to center */
+    --month-label-radius: 30vmin;
+    --month-emoji-radius: 18vmin;
+
+    /* Also adjust season internals for smaller disk (radius 10vmin) */
+    --season-emoji-radius: 6vmin;
+    --emoji-size: 5vmin;
+}
+
+/* Tighter layout for Full Horizontal & Quadrant */
+.year-clock.full-horizontal,
+.year-clock.quadrant {
+    --season-disk-size: 16vmin;
+
+    /* Move things closer to center */
+    --month-label-radius: 26vmin;
+    --month-emoji-radius: 14vmin;
+
+    /* Smaller season internals */
+    --season-emoji-radius: 5vmin;
+
+    /* Smaller emojis */
+    --emoji-size: 3.5vmin;
+
+    /* Move vertical months closer to center */
+}
+
+/* Specific overrides for vertical months in horizontal/quadrant */
+.year-clock.full-horizontal .label-DEC,
+.year-clock.full-horizontal .label-JAN,
+.year-clock.full-horizontal .label-JUN,
+.year-clock.full-horizontal .label-JUL,
+.year-clock.quadrant .label-DEC,
+.year-clock.quadrant .label-JAN,
+.year-clock.quadrant .label-JUN,
+.year-clock.quadrant .label-JUL {
+    --month-label-radius: 20vmin;
+}
+
+/* Specific visibility rules */
+.year-clock.full-horizontal .month-label {
+    font-size: clamp(12px, 5vmin, 20px);
+}
+
+.year-clock.quadrant .month-label {
+    font-size: clamp(10px, 6vmin, 18px);
+}
