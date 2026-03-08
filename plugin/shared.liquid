@@ -1,13 +1,11 @@
 {% template main %}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@300..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://www.trmnlplugins.xyz/year-clock/style.css">
+<link rel="stylesheet" href="https://www.trmnlplugins.xyz/year-in-colors/style.css">
 
 {% assign current_year = "now" | date: "%Y" %}
 {% assign timestamp = trmnl.system.timestamp_utc | plus: trmnl.user.utc_offset %}
 {% assign hemisphere = trmnl.plugin_settings.custom_fields_values.hemisphere %}
-<div class="layout year-clock {{ layout }}" id="layout">
+
+<div class="layout year-clock" id="layout">
   <div class="center-point" id="center"></div>
   <div class="seasons-disk" id="seasons-disk"></div>
   <div class="hand-container" id="hand-container">
@@ -24,5 +22,5 @@
   window.trmnlTimestamp = {{ timestamp | default: 0 }};
   window.trmnlHemisphere = "{{ hemisphere | default: 'northern' }}";
 </script>
-<script src="https://www.trmnlplugins.xyz/year-clock/script.js"></script>
+<script src="https://www.trmnlplugins.xyz/year-in-colors/script.js"></script>
 {% endtemplate %}

@@ -7,13 +7,13 @@ polling_verb: get
 polling_url: ''
 polling_headers: ''
 polling_body: ''
-id: 219958
+id: 224080
 custom_fields:
 - keyname: doesnt_matter
   name: About This Plugin
-  category: calendar,education
+  category: calendar,art
   field_type: author_bio
-  description: Yearly Cycle Clock is a clock showing the cyclical nature of the year, with emojis for seasons and activities. Also known as a phenology wheel.
+  description: Yearly in Color is a 'clock' showing the circadian year rhythem.
   email_address: trmnl@japservandermeij.com
 - keyname: hemisphere
   field_type: select
@@ -30,5 +30,5 @@ custom_fields:
   - Yes please: true
   - No thanks: false
   default: false
-name: Yearly Cycle Clock
+name: Year in Colors
 refresh_interval: 1440
