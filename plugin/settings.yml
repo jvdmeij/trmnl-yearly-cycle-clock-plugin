@@ -1,0 +1,34 @@
+---
+strategy: static
+no_screen_padding: 'no'
+dark_mode: 'no'
+static_data: ''
+polling_verb: get
+polling_url: ''
+polling_headers: ''
+polling_body: ''
+id: 219958
+custom_fields:
+- keyname: doesnt_matter
+  name: About This Plugin
+  category: calendar,education
+  field_type: author_bio
+  description: Yearly Cycle Clock is a clock showing the cyclical nature of the year, with emojis for seasons and activities. Also known as a phenology wheel.
+  email_address: trmnl@japservandermeij.com
+- keyname: hemisphere
+  field_type: select
+  name: Are you in the northern or southern hemisphere?
+  options:
+  - Northern: northern
+  - Southern: southern
+  default: northern
+- keyname: yearlabel
+  field_type: select
+  name: Show current year?
+  description: Show the current year as a label bottom left.
+  options:
+  - Yes please: true
+  - No thanks: false
+  default: false
+name: Yearly Cycle Clock
+refresh_interval: 1440
